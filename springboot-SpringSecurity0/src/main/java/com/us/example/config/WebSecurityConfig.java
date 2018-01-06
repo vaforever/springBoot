@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+
 /**
  * Created by yangyibo on 17/1/18.
  */
@@ -54,7 +56,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     }
-
+   @Override
+    public void configure(WebSecurity web) throws Exception {
+        //解决静态资源被拦截的问题
+        web.ignoring().antMatchers("/css/**");
+    }
 
 
 }
